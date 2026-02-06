@@ -1,0 +1,397 @@
+SQL> INSERT INTO Department (DEPARTMENTID, DEPARTMENTNAME, OFFICELOCATION)
+  2   VALUES ('1', 'Computer Science and Engineering', 'Block A');
+
+1 row created.
+
+SQL> INSERT INTO Department (DEPARTMENTID, DEPARTMENTNAME, OFFICELOCATION)
+  2   VALUES ('2', 'Electrical Engineering', 'Block B');
+
+1 row created.
+
+SQL>  INSERT INTO Department (DEPARTMENTID, DEPARTMENTNAME, OFFICELOCATION)
+  2   VALUES ('3', 'Mechanical Engineering', 'Block C');
+
+1 row created.
+
+SQL> INSERT INTO Department (DEPARTMENTID, DEPARTMENTNAME, OFFICELOCATION)
+  2   VALUES ('4', 'Electronics and Communication Engineering', 'Block D');
+
+1 row created.
+
+SQL> DESC Faculty;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FACULTYID                                 NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+ DESIGNATION                                        VARCHAR2(50)
+ EMAIL                                              VARCHAR2(50)
+ DEPARTMENTID                                       NUMBER(38)
+
+SQL> SELECT * FROM Department;
+DEPARTMENTID DEPARTMENTNAME
+------------ --------------------------------------------------
+OFFICELOCATION
+--------------------------------------------------
+           1 Computer Science and Engineering
+Block A
+
+           2 Electrical Engineering
+Block B
+
+           3 Mechanical Engineering
+Block C
+
+
+DEPARTMENTID DEPARTMENTNAME
+------------ --------------------------------------------------
+OFFICELOCATION
+--------------------------------------------------
+           4 Electronics and Communication Engineering
+Block D
+
+
+SQL> INSERT INTO Faculty (FACULTYID, NAME, DESIGNATION, EMAIL, DEPARTMENTID)
+  2  VALUES (101, 'Dr M P Singh', 'Professor', 'mp.singh@bpmce.ac.in', 1);
+
+1 row created.
+
+SQL> INSERT INTO Faculty (FACULTYID, NAME, DESIGNATION, EMAIL, DEPARTMENTID)
+  2   VALUES (102, 'MITHILESH KUMAR', 'Professor', 'mithilesh.kumar@bpmce.ac.in', 2);
+
+1 row created.
+
+SQL> INSERT INTO Faculty (FACULTYID, NAME, DESIGNATION, EMAIL, DEPARTMENTID)
+  2   VALUES (103, 'Dr Ajay Giri', 'Professor', 'ajay.giri@bpmce.ac.in', 3);
+
+1 row created.
+
+SQL> INSERT INTO Faculty (FACULTYID, NAME, DESIGNATION, EMAIL, DEPARTMENTID)
+  2   VALUES (104, 'Prof Ashish Kumar Suman', 'Professor', 'ashish.kumar@bpmce.ac.in', 4);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM Faculty;
+
+ FACULTYID NAME
+---------- --------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+EMAIL                                              DEPARTMENTID
+-------------------------------------------------- ------------
+       101 Dr M P Singh
+Professor
+mp.singh@bpmce.ac.in                                          1
+
+       102 MITHILESH KUMAR
+Professor
+mithilesh.kumar@bpmce.ac.in                                   2
+
+ FACULTYID NAME
+---------- --------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+EMAIL                                              DEPARTMENTID
+-------------------------------------------------- ------------
+
+       103 Dr Ajay Giri
+Professor
+ajay.giri@bpmce.ac.in                                         3
+
+       104 Prof Ashish Kumar Suman
+Professor
+
+ FACULTYID NAME
+---------- --------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+EMAIL                                              DEPARTMENTID
+-------------------------------------------------- ------------
+ashish.kumar@bpmce.ac.in                                      4
+
+
+SQL> DESC Course;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COURSEID                                  NOT NULL NUMBER(38)
+ COURSENAME                                         VARCHAR2(50)
+ CREDITS                                            NUMBER(38)
+ DEPARTMENTID                                       NUMBER(38)
+ FACULTYID                                          NUMBER(38)
+
+SQL> INSERT INTO Course(COURSEID, COURSENAME, CREDITS, DEPARTMENTID, FACULTYID)
+  2  VALUES(201, 'Thermodynamics', 4, 3, 103);
+
+1 row created.
+
+SQL> INSERT INTO Course(COURSEID, COURSENAME, CREDITS, DEPARTMENTID, FACULTYID)
+  2  VALUES(202, 'Digital Electronics', 4, 4, 104);
+
+1 row created.
+
+SQL> INSERT INTO Course(COURSEID, COURSENAME, CREDITS, DEPARTMENTID, FACULTYID)
+  2  VALUES(203, 'Database Management System', 4, 1, 101);
+
+1 row created.
+
+SQL>  INSERT INTO Course(COURSEID, COURSENAME, CREDITS, DEPARTMENTID, FACULTYID)
+  2  VALUES(204, 'Power System', 3, 3, 104);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM Course;
+
+  COURSEID COURSENAME                                            CREDITS
+---------- -------------------------------------------------- ----------
+DEPARTMENTID  FACULTYID
+------------ ----------
+       201 Thermodynamics                                              4
+           3        103
+
+       202 Digital Electronics                                         4
+           4        104
+
+       203 Database Management System                                  4
+           1        101
+
+
+  COURSEID COURSENAME                                            CREDITS
+---------- -------------------------------------------------- ----------
+DEPARTMENTID  FACULTYID
+------------ ----------
+       204 Power System                                                3
+           3        104
+
+
+SQL> DESC Student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+ GENDER                                             VARCHAR2(10)
+ DATEOFBIRTH                                        DATE
+ CONTACTNUMBER                                      VARCHAR2(15)
+ DEPARTMENTID                                       NUMBER(38)
+
+SQL> INSERT INTO Student(STUDENTID, NAME, GENDER, DATEOFBIRTH, CONTACTNUMBER, DEPARTMENTID)
+  2  VALUES(1, 'Nidhi', 'Female', DATE '2004-11-19', '9XXXXXXX01', 1);
+
+1 row created.
+
+SQL> INSERT INTO Student(STUDENTID, NAME, GENDER, DATEOFBIRTH, CONTACTNUMBER, DEPARTMENTID)
+  2   VALUES(2, 'Milli', 'Female', DATE '2006-02-11', '96XXXXXX01', 2);
+
+1 row created.
+
+SQL> INSERT INTO Student(STUDENTID, NAME, GENDER, DATEOFBIRTH, CONTACTNUMBER, DEPARTMENTID)
+  2  VALUES(3, 'Mona', 'Female', DATE '2004-02-11', '90XXXXXX06', 3);
+
+1 row created.
+
+SQL> INSERT INTO Student(STUDENTID, NAME, GENDER, DATEOFBIRTH, CONTACTNUMBER, DEPARTMENTID)
+  2   VALUES(4, 'Jyoti', 'Female', DATE '2004-03-05', '90XXXXXX07', 4);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT* FROM Student;
+
+ STUDENTID NAME                                               GENDER
+---------- -------------------------------------------------- ----------
+DATEOFBIR CONTACTNUMBER   DEPARTMENTID
+--------- --------------- ------------
+         1 Nidhi                                              Female
+19-NOV-04 9XXXXXXX01                 1
+
+         2 Milli                                              Female
+11-FEB-06 96XXXXXX01                 2
+
+         3 Mona                                               Female
+11-FEB-04 90XXXXXX06                 3
+
+
+ STUDENTID NAME                                               GENDER
+---------- -------------------------------------------------- ----------
+DATEOFBIR CONTACTNUMBER   DEPARTMENTID
+--------- --------------- ------------
+         4 Jyoti                                              Female
+05-MAR-04 90XXXXXX07                 4
+
+
+SQL> INSERT INTO Enrollment(STUDENTID, COURSEID, SEMESTER, GRADE)
+  2
+SQL> DESC Enrollment;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENROLLMENTID                              NOT NULL NUMBER(38)
+ STUDENTID                                          NUMBER(38)
+ COURSEID                                           NUMBER(38)
+ SEMESTER                                           VARCHAR2(20)
+ GRADE                                              VARCHAR2(5)
+
+SQL> INSERT INTO Enrollment(STUDENTID, COURSEID, SEMESTER, GRADE)
+  2
+SQL> INSERT INTO Enrollment(ENROLLMENTID, STUDENTID, COURSEID, SEMESTER, GRADE)
+  2  VALUES(1,1, 203, 'Sem-5', 'A');
+
+1 row created.
+
+SQL> INSERT INTO Enrollment(ENROLLMENTID, STUDENTID, COURSEID, SEMESTER, GRADE)
+  2  VALUES(2,2, 201, 'Sem-5', 'A');
+
+1 row created.
+
+SQL>  INSERT INTO Enrollment(ENROLLMENTID, STUDENTID, COURSEID, SEMESTER, GRADE)
+  2   VALUES(3,3, 202, 'Sem-5', 'B+');
+
+1 row created.
+
+SQL> INSERT INTO Enrollment(ENROLLMENTID, STUDENTID, COURSEID, SEMESTER, GRADE)
+  2   VALUES(4,4, 204, 'Sem-5', 'B');
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM Enrollment;
+
+ENROLLMENTID  STUDENTID   COURSEID SEMESTER             GRADE
+------------ ---------- ---------- -------------------- -----
+           1          1        203 Sem-5                A
+           2          2        201 Sem-5                A
+           3          3        202 Sem-5                B+
+           4          4        204 Sem-5                B
+
+SQL> SELECT * FROM Department;
+
+DEPARTMENTID DEPARTMENTNAME
+------------ --------------------------------------------------
+OFFICELOCATION
+--------------------------------------------------
+           1 Computer Science and Engineering
+Block A
+
+           2 Electrical Engineering
+Block B
+
+           3 Mechanical Engineering
+Block C
+
+
+DEPARTMENTID DEPARTMENTNAME
+------------ --------------------------------------------------
+OFFICELOCATION
+--------------------------------------------------
+           4 Electronics and Communication Engineering
+Block D
+
+
+SQL> SELECT * FROM Faculty;
+
+ FACULTYID NAME
+---------- --------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+EMAIL                                              DEPARTMENTID
+-------------------------------------------------- ------------
+       101 Dr M P Singh
+Professor
+mp.singh@bpmce.ac.in                                          1
+
+       102 MITHILESH KUMAR
+Professor
+mithilesh.kumar@bpmce.ac.in                                   2
+
+ FACULTYID NAME
+---------- --------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+EMAIL                                              DEPARTMENTID
+-------------------------------------------------- ------------
+
+       103 Dr Ajay Giri
+Professor
+ajay.giri@bpmce.ac.in                                         3
+
+       104 Prof Ashish Kumar Suman
+Professor
+
+ FACULTYID NAME
+---------- --------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+EMAIL                                              DEPARTMENTID
+-------------------------------------------------- ------------
+ashish.kumar@bpmce.ac.in                                      4
+
+
+SQL> SELECT  * FROM Course;
+
+  COURSEID COURSENAME                                            CREDITS
+---------- -------------------------------------------------- ----------
+DEPARTMENTID  FACULTYID
+------------ ----------
+       201 Thermodynamics                                              4
+           3        103
+
+       202 Digital Electronics                                         4
+           4        104
+
+       203 Database Management System                                  4
+           1        101
+
+
+  COURSEID COURSENAME                                            CREDITS
+---------- -------------------------------------------------- ----------
+DEPARTMENTID  FACULTYID
+------------ ----------
+       204 Power System                                                3
+           3        104
+
+
+SQL> SELECT * FROM Student;
+
+ STUDENTID NAME                                               GENDER
+---------- -------------------------------------------------- ----------
+DATEOFBIR CONTACTNUMBER   DEPARTMENTID
+--------- --------------- ------------
+         1 Nidhi                                              Female
+19-NOV-04 9XXXXXXX01                 1
+
+         2 Milli                                              Female
+11-FEB-06 96XXXXXX01                 2
+
+         3 Mona                                               Female
+11-FEB-04 90XXXXXX06                 3
+
+
+ STUDENTID NAME                                               GENDER
+---------- -------------------------------------------------- ----------
+DATEOFBIR CONTACTNUMBER   DEPARTMENTID
+--------- --------------- ------------
+         4 Jyoti                                              Female
+05-MAR-04 90XXXXXX07                 4
+
+
+SQL> SELECT * FROM Enrollment;
+
+ENROLLMENTID  STUDENTID   COURSEID SEMESTER             GRADE
+------------ ---------- ---------- -------------------- -----
+           1          1        203 Sem-5                A
+           2          2        201 Sem-5                A
+           3          3        202 Sem-5                B+
+           4          4        204 Sem-5                B
+
+SQL>
