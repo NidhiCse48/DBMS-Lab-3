@@ -1,0 +1,722 @@
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Fri Feb 20 14:12:30 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name:        system
+Enter password:
+Last Successful login time: Fri Feb 13 2026 22:48:20 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> SELECT S.StudentID, S.Name,E.CourseID FROM Student S
+  2  INNER JOIN Enrollment E ON S.StudentID=E.StudentID;
+
+ STUDENTID NAME                                                 COURSEID
+---------- -------------------------------------------------- ----------
+         1 Nidhi                                                     203
+         2 Milli                                                     201
+         3 Mona                                                      202
+         4 Jyoti                                                     204
+
+SQL> SELECT S.Name, E.Semester FROM Student S
+  2  INNER JOINT Enrollment E ON S.StudentID=E.StudentID;
+INNER JOINT Enrollment E ON S.StudentID=E.StudentID
+      *
+ERROR at line 2:
+ORA-00905: missing keyword
+
+
+SQL>  SELECT S.Name, E.Semester FROM Student S
+  2   INNER JOIN Enrollment E ON S.StudentID=E.StudentID;
+
+NAME                                               SEMESTER
+-------------------------------------------------- --------------------
+Nidhi                                              Sem-5
+Milli                                              Sem-5
+Mona                                               Sem-5
+Jyoti                                              Sem-5
+
+SQL> SELECT C.CourseName, C.Credits,F.Name FROM Course C
+  2  INNER JOIN Faculty F ON C.FacultyID=F.FacultyID;
+
+COURSENAME                                            CREDITS
+-------------------------------------------------- ----------
+NAME
+--------------------------------------------------
+Database Management System                                  4
+Dr M P Singh
+
+Thermodynamics                                              4
+Dr Ajay Giri
+
+Digital Electronics                                         4
+Prof Ashish Kumar Suman
+
+
+COURSENAME                                            CREDITS
+-------------------------------------------------- ----------
+NAME
+--------------------------------------------------
+Power System                                                3
+Prof Ashish Kumar Suman
+
+Advanced Java                                               4
+VICKY ANAND
+
+Microprocessor                                              3
+Dr AJAY KUMAR
+
+
+COURSENAME                                            CREDITS
+-------------------------------------------------- ----------
+NAME
+--------------------------------------------------
+Thermal Engineering                                         4
+Dr Prity Kumari Choudhary
+
+Digital Signal Processing                                   4
+Puja Rani
+
+Structural Engineering                                      3
+Pankaj Kumar
+
+
+COURSENAME                                            CREDITS
+-------------------------------------------------- ----------
+NAME
+--------------------------------------------------
+Cloud Computing                                             4
+Arun Kumar
+
+
+10 rows selected.
+
+SQL> SELECT S.Name,E.Grade FROM Student S
+  2  INNER JOIN Enrollment E ON S.StudentID=E.StudentID;
+
+NAME                                               GRADE
+-------------------------------------------------- -----
+Nidhi                                              A
+Milli                                              A
+Mona                                               B+
+Jyoti                                              B
+
+SQL> SELECT C.CourseName FROM Course C
+  2  INNER JOIN Faculty F ON C.FacultyID=F.FacultyID WHERE F.FacultyID='103';
+
+COURSENAME
+--------------------------------------------------
+Thermodynamics
+
+SQL> SELECT F.Name,F.Designation,C.CourseName FROM Faculty F
+  2  INNER JOIN Course C ON F.FacultyID=C.FacultyID;
+
+NAME
+--------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Dr Ajay Giri
+Professor
+Thermodynamics
+
+Prof Ashish Kumar Suman
+Professor
+Digital Electronics
+
+NAME
+--------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+
+Dr M P Singh
+Professor
+Database Management System
+
+Prof Ashish Kumar Suman
+Professor
+
+NAME
+--------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Power System
+
+VICKY ANAND
+Professor
+Advanced Java
+
+Dr AJAY KUMAR
+
+NAME
+--------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Professor
+Microprocessor
+
+Dr Prity Kumari Choudhary
+Professor
+Thermal Engineering
+
+
+NAME
+--------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Puja Rani
+Professor
+Digital Signal Processing
+
+Pankaj Kumar
+Professor
+Structural Engineering
+
+NAME
+--------------------------------------------------
+DESIGNATION
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+
+Arun Kumar
+Professor
+Cloud Computing
+
+
+10 rows selected.
+
+SQL> SELECT S.Name,C.CourseName,E.Semester FROM Student S
+  2  INNER JOIN Enrollment E ON S.StudentID =E.StudentID
+  3  INNER JOIN Course C ON E.CourseID=C.CourseID;
+
+NAME
+--------------------------------------------------
+COURSENAME                                         SEMESTER
+-------------------------------------------------- --------------------
+Milli
+Thermodynamics                                     Sem-5
+
+Mona
+Digital Electronics                                Sem-5
+
+Nidhi
+Database Management System                         Sem-5
+
+
+NAME
+--------------------------------------------------
+COURSENAME                                         SEMESTER
+-------------------------------------------------- --------------------
+Jyoti
+Power System                                       Sem-5
+
+
+SQL> SELECT S.Name,C.CourseName FROM Student S
+  2   INNER JOIN Enrollment E ON S.StudentID =E.StudentID
+  3   INNER JOIN Course C ON E.CourseID=C.CourseID;
+
+NAME
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Milli
+Thermodynamics
+
+Mona
+Digital Electronics
+
+Nidhi
+Database Management System
+
+
+NAME
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Jyoti
+Power System
+
+
+SQL> SELECT S.Name,C.CourseName,E.Grade FROM Student S
+  2  INNER JOIN Enrollment E ON S.StudentID=E.StudentID
+  3  INNER JOIN Course C ON E.CourseID=C.CourseID WHERE E.Semester=4;
+INNER JOIN Course C ON E.CourseID=C.CourseID WHERE E.Semester=4
+                                                   *
+ERROR at line 3:
+ORA-01722: invalid number
+
+
+SQL>  SELECT S.Name,C.CourseName,E.Grade FROM Student S
+  2   INNER JOIN Enrollment E ON S.StudentID=E.StudentID
+  3   INNER JOIN Course C ON E.CourseID=C.CourseID
+  4   WHERE E.Semester=4;
+ WHERE E.Semester=4
+       *
+ERROR at line 4:
+ORA-01722: invalid number
+
+
+SQL>  SELECT S.Name,C.CourseName,E.Grade FROM Student S
+  2   INNER JOIN Enrollment E ON S.StudentID=E.StudentID
+  3   INNER JOIN Course C ON E.CourseID=C.CourseID
+  4    WHERE E.Semester='4';
+
+no rows selected
+
+SQL> SELECT C.CourseName FROM Student S
+  2  INNER JOIN Enrollment E ON S.StudentID=E.StudentID
+  3  INNER JOIN Course C ON E.CourseID=C.CourseID WHERE S.StudentID='1';
+
+COURSENAME
+--------------------------------------------------
+Database Management System
+
+SQL> SELECT S.Name, S.DepartmentID, C.CourseName FROM Student S
+  2  INNER JOIN Enrollment E ON S.StudentID=E.StudentID
+  3  INNER JOIN Course C ON E.CourseID=C.CourseID;
+
+NAME                                               DEPARTMENTID
+-------------------------------------------------- ------------
+COURSENAME
+--------------------------------------------------
+Milli                                                         2
+Thermodynamics
+
+Mona                                                          3
+Digital Electronics
+
+Nidhi                                                         1
+Database Management System
+
+
+NAME                                               DEPARTMENTID
+-------------------------------------------------- ------------
+COURSENAME
+--------------------------------------------------
+Jyoti                                                         4
+Power System
+
+
+SQL> SELECT D.DepartmentID,C.CourseName FROM Department D
+  2  INNER JOIN Course C ON D.DepartmentID=C.DepartmentID;
+
+DEPARTMENTID COURSENAME
+------------ --------------------------------------------------
+           3 Thermodynamics
+           4 Digital Electronics
+           1 Database Management System
+           3 Power System
+           1 Advanced Java
+           2 Microprocessor
+           3 Thermal Engineering
+           4 Digital Signal Processing
+           9 Structural Engineering
+          10 Cloud Computing
+
+10 rows selected.
+
+SQL> SELECT S.Name,C.CourseName FROM Student S
+  2  INNER JOIN Enrollment E ON S.StudentID=E.StudentID
+  3  INNER JOIN Course C ON E.CourseID=C.CourseID WHERE S.DepartmentID='1';
+
+NAME
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Nidhi
+Database Management System
+
+
+SQL> SELECT F.Name,D.DepartmentName FROM Faculty F
+  2  INNER JOIN Department D ON F.DepartmentID=D.DepartmentID;
+
+NAME
+--------------------------------------------------
+DEPARTMENTNAME
+--------------------------------------------------
+Dr M P Singh
+Computer Science and Engineering
+
+VICKY ANAND
+Computer Science and Engineering
+
+MITHILESH KUMAR
+Electrical Engineering
+
+
+NAME
+--------------------------------------------------
+DEPARTMENTNAME
+--------------------------------------------------
+Dr Ajay Giri
+Mechanical Engineering
+
+Prof Ashish Kumar Suman
+Electronics and Communication Engineering
+
+Dr AJAY KUMAR
+Electrical and Electronics  Engineering
+
+
+NAME
+--------------------------------------------------
+DEPARTMENTNAME
+--------------------------------------------------
+Dr Prity Kumari Choudhary
+3D Animation and Graphics
+
+Puja Rani
+COMPUTER SCIENCE ENGINEERING(AI )
+
+Pankaj Kumar
+CIVIL ENGINEERING with COMPUTER APPLICATION
+
+
+NAME
+--------------------------------------------------
+DEPARTMENTNAME
+--------------------------------------------------
+Arun Kumar
+IT
+
+
+10 rows selected.
+
+SQL> SELECT F.Name,C.CourseName FROM Faculty F
+  2  INNER JOIN Course C ON F.FacultyID=C.FacultyID ORDER BY C.Credits DESC;
+
+NAME
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Dr Ajay Giri
+Thermodynamics
+
+Prof Ashish Kumar Suman
+Digital Electronics
+
+Dr M P Singh
+Database Management System
+
+
+NAME
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+VICKY ANAND
+Advanced Java
+
+Puja Rani
+Digital Signal Processing
+
+Dr Prity Kumari Choudhary
+Thermal Engineering
+
+
+NAME
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Arun Kumar
+Cloud Computing
+
+Dr AJAY KUMAR
+Microprocessor
+
+Pankaj Kumar
+Structural Engineering
+
+
+NAME
+--------------------------------------------------
+COURSENAME
+--------------------------------------------------
+Prof Ashish Kumar Suman
+Power System
+
+
+10 rows selected.
+
+SQL> SELECT C.CourseName,COUNT(E.StudentID) AS Total_Students FROM Course C
+  2  INNER JOIN Enrollment E ON C.CourseID=E.CourseID GROUP BY C.CourseName;
+
+COURSENAME                                         TOTAL_STUDENTS
+-------------------------------------------------- --------------
+Thermodynamics                                                  1
+Digital Electronics                                             1
+Database Management System                                      1
+Power System                                                    1
+
+SQL> SELECT F.Name,COUNT(C.CourseID) AS Total_Courses FROM Faculty F
+  2  INNER JOIN Course C ON F.FacultyID=C.facultyID GROUP BY F.Name;
+
+NAME                                               TOTAL_COURSES
+-------------------------------------------------- -------------
+Dr Ajay Giri                                                   1
+Prof Ashish Kumar Suman                                        2
+Dr M P Singh                                                   1
+VICKY ANAND                                                    1
+Dr AJAY KUMAR                                                  1
+Dr Prity Kumari Choudhary                                      1
+Puja Rani                                                      1
+Pankaj Kumar                                                   1
+Arun Kumar                                                     1
+
+9 rows selected.
+
+SQL> SELECT D.DepartmentName, COUNT(S.StudentID) AS Total_Students FROM Department D
+  2  INNER JOIN Student S ON D.DepartmentID=S.DepartmentID GROUP BY D.DepartmentName;
+
+DEPARTMENTNAME                                     TOTAL_STUDENTS
+-------------------------------------------------- --------------
+Computer Science and Engineering                                1
+Electrical Engineering                                          1
+Mechanical Engineering                                          1
+Electronics and Communication Engineering                       1
+Civil Engineering                                               1
+Electrical and Electronics  Engineering                         1
+3D Animation and Graphics                                       1
+COMPUTER SCIENCE ENGINEERING(AI )                               1
+CIVIL ENGINEERING with COMPUTER APPLICATION                     1
+IT                                                              1
+
+10 rows selected.
+
+SQL> SELECT C.CourseName,MAX(E.Grade) AS Max_Grade FROM Course C
+  2  INNER JOIN Enrollment E ON C.CourseID=E.CourseID GROUP BY C.CourseName;
+
+COURSENAME                                         MAX_G
+-------------------------------------------------- -----
+Thermodynamics                                     A
+Digital Electronics                                B+
+Database Management System                         A
+Power System                                       B
+
+SQL> SELECT * FROM Enrollment;
+
+ENROLLMENTID  STUDENTID   COURSEID SEMESTER             GRADE
+------------ ---------- ---------- -------------------- -----
+           1          1        203 Sem-5                A
+           2          2        201 Sem-5                A
+           3          3        202 Sem-5                B+
+           4          4        204 Sem-5                B
+
+SQL> INSERT INTO Enrollment VALUES('5','5','205', 'Sem-5','A+');
+
+1 row created.
+
+SQL> INSERT INTO Enrollment VALUES('6','6','206', 'Sem-3','A+');
+
+1 row created.
+
+SQL> INSERT INTO Enrollment VALUES('7','7','207', 'Sem-4','B+');
+
+1 row created.
+
+SQL> INSERT INTO Enrollment VALUES('8','8','208', 'Sem-4','A');
+
+1 row created.
+
+SQL> INSERT INTO Enrollment VALUES('9','9','209', 'Sem-3','B');
+
+1 row created.
+
+SQL> INSERT INTO Enrollment VALUES('10','10','210', 'Sem-6','B+');
+
+1 row created.
+
+SQL> SELECT * FROM Enrollment;
+
+ENROLLMENTID  STUDENTID   COURSEID SEMESTER             GRADE
+------------ ---------- ---------- -------------------- -----
+           1          1        203 Sem-5                A
+           2          2        201 Sem-5                A
+           3          3        202 Sem-5                B+
+           4          4        204 Sem-5                B
+           5          5        205 Sem-5                A+
+           6          6        206 Sem-3                A+
+           7          7        207 Sem-4                B+
+           8          8        208 Sem-4                A
+           9          9        209 Sem-3                B
+          10         10        210 Sem-6                B+
+
+10 rows selected.
+
+SQL>  SELECT S.StudentID, S.Name,E.CourseID FROM Student S
+  2   INNER JOIN Enrollment E ON S.StudentID=E.StudentID;
+
+ STUDENTID NAME                                                 COURSEID
+---------- -------------------------------------------------- ----------
+         1 Nidhi                                                     203
+         2 Milli                                                     201
+         3 Mona                                                      202
+         4 Jyoti                                                     204
+         5 Puja                                                      205
+         6 Aniket                                                    206
+         7 Pankaj                                                    207
+         8 Rahul                                                     208
+         9 Raman                                                     209
+        10 Shubham                                                   210
+
+10 rows selected.
+
+SQL>  SELECT S.Name, E.Semester FROM Student S
+  2    INNER JOIN Enrollment E ON S.StudentID=E.StudentID;
+
+NAME                                               SEMESTER
+-------------------------------------------------- --------------------
+Nidhi                                              Sem-5
+Milli                                              Sem-5
+Mona                                               Sem-5
+Jyoti                                              Sem-5
+Puja                                               Sem-5
+Aniket                                             Sem-3
+Pankaj                                             Sem-4
+Rahul                                              Sem-4
+Raman                                              Sem-3
+Shubham                                            Sem-6
+
+10 rows selected.
+
+SQL> SET LINESIZE 200;
+SQL> SET PAGESIZE 100;
+SQL> COLUMN CourseName FORMAT A30;
+SQL> COLUMN Name FORMAT A25;
+SQL> COLUMN Credits FORMAT 999;
+SQL>  SELECT F.Name,F.Designation,C.CourseName FROM Faculty F
+  2   INNER JOIN Faculty F ON C.FacultyID=F.FacultyID;
+ INNER JOIN Faculty F ON C.FacultyID=F.FacultyID
+                         *
+ERROR at line 2:
+ORA-00904: "C"."FACULTYID": invalid identifier
+
+
+SQL>  SET LINESIZE 200;
+SQL>  SET PAGESIZE 100;
+SQL> COLUMN CourseName FORMAT A30;
+SQL>  COLUMN Name FORMAT A25;
+SQL>  COLUMN Credits FORMAT 999;
+SQL> SELECT C.CourseName , C.Credits,F.Name FROM Course C
+  2  INNER JOIN Faculty F ON C.FacultyID=F.FacultyID;
+
+COURSENAME                     CREDITS NAME
+------------------------------ ------- -------------------------
+Database Management System           4 Dr M P Singh
+Thermodynamics                       4 Dr Ajay Giri
+Digital Electronics                  4 Prof Ashish Kumar Suman
+Power System                         3 Prof Ashish Kumar Suman
+Advanced Java                        4 VICKY ANAND
+Microprocessor                       3 Dr AJAY KUMAR
+Thermal Engineering                  4 Dr Prity Kumari Choudhary
+Digital Signal Processing            4 Puja Rani
+Structural Engineering               3 Pankaj Kumar
+Cloud Computing                      4 Arun Kumar
+
+10 rows selected.
+
+SQL> SET LINESIZE 200;
+SQL> SET PAGESIZE 100;
+SQL> SET WRAP OFF;
+SQL> COLUMN Name FORMAT A25;
+SQL> COLUMN Designation FORMAT A20;
+SQL> COLUMN CourseName FORMAT A30;
+SQL> SELECT F.Name,F.Designation,C.CourseName FROM Faculty F
+  2   INNER JOIN Faculty F ON C.FacultyID=F.FacultyID;
+ INNER JOIN Faculty F ON C.FacultyID=F.FacultyID
+                         *
+ERROR at line 2:
+ORA-00904: "C"."FACULTYID": invalid identifier
+
+
+SQL>  SET LINESIZE 200;
+SQL>  SET PAGESIZE 100;
+SQL>  SET WRAP OFF;
+SQL>  COLUMN Name FORMAT A25;
+SQL>  COLUMN Designation FORMAT A20;
+SQL>  COLUMN CourseName FORMAT A30;
+SQL>  SELECT F.Name,F.Designation,C.CourseName FROM Faculty F
+  2  INNER JOIN Course C ON F.FacultyID=C.FacultyID ORDER BY F.Name ASC, C.CourseName ASC;
+
+NAME                      DESIGNATION          COURSENAME
+------------------------- -------------------- ------------------------------
+Arun Kumar                Professor            Cloud Computing
+Dr AJAY KUMAR             Professor            Microprocessor
+Dr Ajay Giri              Professor            Thermodynamics
+Dr M P Singh              Professor            Database Management System
+Dr Prity Kumari Choudhary Professor            Thermal Engineering
+Pankaj Kumar              Professor            Structural Engineering
+Prof Ashish Kumar Suman   Professor            Digital Electronics
+Prof Ashish Kumar Suman   Professor            Power System
+Puja Rani                 Professor            Digital Signal Processing
+VICKY ANAND               Professor            Advanced Java
+
+10 rows selected.
+
+SQL> SET LINESIZE 200;
+SQL> SET PAGESIZE 100;
+SQL> SET WRAP OFF;
+SQL> COLUMN Name FORMAT A20;
+SQL> COLUMN CourseName FORMAT A30;
+SQL> COLUMN Semester FORMAT A10;
+SQL> SELECT S.Name,C.CourseName,E.Semester FROM Student S
+  2   INNER JOIN Enrollment E ON S.StudentID =E.StudentID
+  3    INNER JOIN Course C ON E.CourseID=C.CourseID;
+
+NAME                 COURSENAME                     SEMESTER
+-------------------- ------------------------------ ----------
+Milli                Thermodynamics                 Sem-5
+Mona                 Digital Electronics            Sem-5
+Nidhi                Database Management System     Sem-5
+Jyoti                Power System                   Sem-5
+Puja                 Advanced Java                  Sem-5
+Aniket               Microprocessor                 Sem-3
+Pankaj               Thermal Engineering            Sem-4
+Rahul                Digital Signal Processing      Sem-4
+Raman                Structural Engineering         Sem-3
+Shubham              Cloud Computing                Sem-6
+
+10 rows selected.
+
+SQL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
